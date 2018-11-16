@@ -11,6 +11,7 @@
         window.addEventListener("load", function () {
             var contents = {
                 "default": {
+                    "title": "Screen Numeric Observer - Manual",
                     "manual": "Manual",
                     "notices": "Third Party Licenses",
                     "top_to": "↑Top",
@@ -66,8 +67,8 @@
                     "stop_desc":"Stop observing the captured area. \"Start\" button will be enabled. ",
                     "speech_notification": "Speech Notification",
                     "speech_notification_desc": "Toggle enabling text-to-speech notification or not.",
-                    "title":"Title",
-                    "title_desc":"Edit the title. It will be read out when text-to-speech notication.",
+                    "observer_title":"Title",
+                    "observer_title_desc":"Edit the title. It will be read out when text-to-speech notication.",
                     "captured_area":"Captured Area",
                     "captured_area_desc":"Display the captured area position and size. If it is not captured, the following message will be displayed:<strong>Set the Captured area.</strong>",
                     "capture":"Capture",
@@ -100,6 +101,7 @@
                                      <p>See details at <a href="notices.html">here</a>.</p>`
                 },
                 "ja": {
+                    "title": "Screen Numeric Observer - マニュアル",
                     "manual": "マニュアル",
                     "notices": "サードパーティライセンス",
                     "top_to": "↑トップ",
@@ -155,8 +157,8 @@
                     "stop_desc":"監視を停止します。「開始」ボタンが有効になります。",
                     "speech_notification": "音声通知",
                     "speech_notification_desc": "音声読み上げによる通知をするかどうかを切り替えます。",
-                    "title":"タイトル",
-                    "title_desc":"オブザーバーのタイトルを編集します。編集すると音声通知時にこのタイトルが読み上げられます。",
+                    "observer_title":"タイトル",
+                    "observer_title_desc":"オブザーバーのタイトルを編集します。編集すると音声通知時にこのタイトルが読み上げられます。",
                     "captured_area":"取込範囲",
                     "captured_area_desc":"取込範囲の位置と大きさを表示します。取り込まれていない場合は、<strong>取込範囲を設定してください。</strong>と表示されます。",
                     "capture":"取込",
@@ -189,7 +191,11 @@
                                      <p>詳しくは<a href="notices.html">こちら</a>をご覧ください。</p>`
                 }
             };
-            document.title = "Screen Numeric Observer - " + contents[getLanguage()]["manual"];
+            if(contents[getLanguage()]){
+                document.title = "Screen Numeric Observer - " + contents[getLanguage()]["manual"];
+            }else{
+                document.title = "Screen Numeric Observer - " + contents["default"]["manual"];
+            }
             localizeContents(contents);
             localizeImages(["ja"]);
             document.getElementById("screen_image").addEventListener("load",function(e){
@@ -224,7 +230,7 @@
                 drawClippedImage(img, document.getElementById("start_canvas"), {x: 20, y: 140, width: 80, height: 26});
                 drawClippedImage(img, document.getElementById("stop_canvas"), { x: 118, y: 140, width: 80, height: 26 });
                 drawClippedImage(img, document.getElementById("speech_notification_canvas"), { x: 20, y: 166, width: 150, height: 24 });
-                drawClippedImage(img, document.getElementById("title_canvas"), { x: 20, y: 200, width: 220, height: 50 });
+                drawClippedImage(img, document.getElementById("observer_title_canvas"), { x: 20, y: 200, width: 220, height: 50 });
                 drawClippedImage(img, document.getElementById("captured_area_canvas"), { x: 20, y: 250, width: 220, height: 45 });
                 drawClippedImage(img, document.getElementById("capture_canvas"), { x: 20, y: 295, width: 80, height: 26 });
                 drawClippedImage(img, document.getElementById("confirm_canvas"), { x: 110, y: 295, width: 80, height: 26 });
@@ -373,10 +379,10 @@
                                 <canvas id="speech_notification_canvas"></canvas>
                                 <p data-localize-content="speech_notification_desc"></p>
                             </section>
-                            <section id="title">
-                                <h4 data-localize-content="title"></h4>
-                                <canvas id="title_canvas"></canvas>
-                                <p data-localize-content="title_desc"></p>
+                            <section id="observer_title">
+                                <h4 data-localize-content="observer_title"></h4>
+                                <canvas id="observer_title_canvas"></canvas>
+                                <p data-localize-content="observer_title_desc"></p>
                             </section>
                             <section id="captured_area">
                                 <h4 data-localize-content="captured_area"></h4>

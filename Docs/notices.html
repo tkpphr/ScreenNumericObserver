@@ -25,19 +25,25 @@
         window.addEventListener("load", function () {
             var contents = {
                 "default": {
+                    "title": "Screen Numeric Observer - Third Party Licenses",
                     "manual": "Manual",
                     "notices": "Third Party Licenses",
                     "misc": "Misc",
                     "libraries": "Libraries"
                 },
                 "ja": {
+                    "title": "Screen Numeric Observer - サードパーティライセンス",
                     "manual": "マニュアル",
                     "notices": "サードパーティライセンス",
                     "misc": "その他",
                     "libraries": "ライブラリ"
                 }
             };
-            document.title = "Screen Numeric Observer - " + contents[getLanguage()]["notices"];
+            if(contents[getLanguage()]){
+                document.title = "Screen Numeric Observer - " + contents[getLanguage()]["notices"];
+            }else{
+                document.title = "Screen Numeric Observer - " + contents["default"]["notices"];
+            }
             localizeContents(contents);
         });
     </script>
